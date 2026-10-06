@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>OS Simu v8</title>
+    <style>
+        body,html{
+            background-color: rgb(150,0,255);
+            width: 100%;
+            height: 100%;
+        }
+        *{
+            font-family: sans-serif;
+            user-select: none;
+            margin: 0;
+        }
+        #background-text{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            color: white;
+            font-size: 50px;
+        }
+        #taskbar{
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background-color: rgb(255,255,255,0.3);
+            backdrop-filter: blur(5px);
+            width: auto;
+            height: 60px;
+            border-radius: 10px;
+        }
+        #menu{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            font-size: 20px;
+            width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 70%;
+            background-color: rgba(255,255,255,0.5);
+            color: black;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            transition: background-color 0.3s ease,
+            color 0.3s ease,
+            border-color 0.3s ease;
+            z-index: 1;
+        }
+        #menu:hover{
+            background-color: rgb(150,0,255);
+            color: white;
+        }
+        #menu:active{
+            border-color: rgb(50,0,255);
+        }
+        #menu-div{
+            position: fixed;
+            bottom: 120px;
+            left: 50%;
+            transform: translate(-50%,10%);
+            background-color: rgba(255,255,255,0.3);
+            backdrop-filter: blur(5px);
+            width: 750px;
+            height: 500px;
+            visibility: hidden;
+            opacity: 0;
+            border-radius: 10px;
+            z-index: 0;
+            transition: opacity 0.3s ease,
+            transform 0.3s ease;
+        }
+        #menu-div.show{
+            opacity: 1;
+            transform: translateX(-50%);
+        }
+        .menu-item{
+            margin-left: 550px;
+            width: 200px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: white;
+            border-radius: 10px;
+            transition: background-color 0.3s ease,
+            color 0.3s ease;
+        }
+        .menu-item:hover{
+            background-color: rgb(200,0,255);
+            color: white;
+        }
+        #menu-os-simu{
+            position: absolute;
+            top: 50%;
+            left: 300px;
+            transform: translate(-50%,-50%);
+            font-size: 60px;
+            color: white;
+            white-space: nowrap;
+        }
+        #contextmenu{
+            position: fixed;
+            width: 160px;
+            height: auto;
+            background-color: rgba(255,255,255,0.3);
+            backdrop-filter: blur(5px);
+            visibility: hidden;
+            border-radius: 10px;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .contextmenu-item{
+            text-align: center;
+            width: 100%;
+            height: 35px;
+            line-height: 35px;
+            border-radius: 10px;
+            transition: background-color 0.3s ease,
+            color 0.3s ease;
+            color: white;
+        }
+        .contextmenu-item:hover{
+            background-color: rgb(100,0,255);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="background-text">OS SIMU V8</h1>
+    <div id="taskbar">
+        <div id="menu">菜单</div>
+    </div>
+    <div id="menu-div">
+        <div class="menu-item" onclick="window.open('https://t-pagecode.github.io')">T-PageCode主页</div>
+        <div class="menu-item" onclick="window.open('https://t-pagecode.github.io/T-CodeSystem')">T-CodeSystem</div>
+        <div class="menu-item" onclick="window.open('https://codeberg.org/T-PageCode')">Codeberg</div>
+        <div class="menu-item" onclick="window.open('https://gitcode.com/T-PageCode')">GitCode</div>
+        <div class="menu-item" onclick="window.open('https://github.com/T-PageCode')">GitHub</div>
+        <div class="menu-item" onclick="window.open('https://gitea.com/T-PageCode')">Gitea</div>
+        <div class="menu-item" onclick="window.open('https://gitee.com/T-PageCode')">Gitee</div>
+        <div class="menu-item" onclick="window.location.href='./index.html'">关闭系统</div>
+        <div class="menu-item" onclick="window.location.href='./v7.html'">切换到V7版本</div>
+        <div class="menu-item" onclick="window.location.href='./v9.html'">切换到V9版本</div>
+        <h1 id="menu-os-simu">OS SIMU V8</h1>
+    </div>
+    <div id="contextmenu">
+        <div class="contextmenu-item" onclick="window.location.reload()">刷新</div>
+        <div class="contextmenu-item" onclick="window.location.href='./index.html'">关闭系统</div>
+        <div class="contextmenu-item" onclick="window.open('https://gitee.com/T-PageCode')">Gitee</div>
+        <div class="contextmenu-item" onclick="window.open('https://gitea.com/T-PageCode')">Gitea</div>
+        <div class="contextmenu-item" onclick="window.open('https://github.com/T-PageCode')">GitHub</div>
+        <div class="contextmenu-item" onclick="window.open('https://gitcode.com/T-PageCode')">GitCode</div>
+        <div class="contextmenu-item" onclick="window.open('https://codeberg.org/T-PageCode')">Codeberg</div>
+        <div class="contextmenu-item" onclick="window.location.href='./v7.html'">切换到V7版本</div>
+        <div class="contextmenu-item" onclick="window.location.href='./v9.html'">切换到V9版本</div>
+    </div>
+    <script>
+        const contextmenu = document.getElementById("contextmenu");
+        let menuDivTime = null;
+        let contextmenuTime = null;
+        document.addEventListener("contextmenu",(e) => {
+            clearTimeout(contextmenuTime);
+            e.preventDefault();
+            let x = e.clientX + "px";
+            let y = e.clientY + "px";
+            contextmenu.style.visibility = "visible";
+            contextmenu.style.opacity = "1";
+            contextmenu.style.left = x;
+            contextmenu.style.top = y;
+        })
+        document.addEventListener("mousedown",(e) => {
+            if (e.target.closest("#contextmenu")) {
+                return;
+            }
+            clearTimeout(contextmenuTime);
+            contextmenu.style.opacity = "0";
+            contextmenuTime = setTimeout(() => {
+                contextmenu.style.visibility = "hidden";
+            },300)
+        })
+        const menu = document.getElementById("menu");
+        const menuDiv = document.getElementById("menu-div");
+        menu.onclick = () => {
+            if (menuDiv.classList.contains("show")) {
+                clearTimeout(menuDivTime);
+                menuDiv.classList.remove("show");
+                menuDivTime = setTimeout(() => {
+                    menuDiv.style.visibility = "hidden";
+                },300)
+            }
+            else {
+                clearTimeout(menuDivTime);
+                menuDiv.style.visibility = "visible";
+                menuDiv.classList.add("show");
+            }
+        }
+        document.body.onclick = (e) => {
+            if (e.target.closest("#menu") || e.target.closest("#menu-div")) {
+                return;
+            }
+            clearTimeout(menuDivTime);
+            menuDiv.classList.remove("show");
+            menuDivTime = setTimeout(() => {
+                menuDiv.style.visibility = "hidden";
+            },300)
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>OS Simu v4</title>
+    <style>
+        body,html{
+            background-color: rgb(0,200,255);
+            width: 100%;
+            height: 100%;
+        }
+        *{
+            font-family: "Simsun","宋体",serif;
+            user-select: none;
+            margin: 0;
+        }
+        #background-text{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            color: white;
+            font-size: 50px;
+        }
+        #taskbar{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-color: rgb(255,255,255);
+            width: 100%;
+            height: 50px;
+        }
+        #menu{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            font-size: 20px;
+            width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80%;
+            background-color: rgb(220,220,220);
+            color: black;
+        }
+        #menu:hover{
+            background-color: rgb(230,230,230);
+        }
+        #menu:active{
+            border: 2px solid rgb(0,0,255);
+        }
+        #menu-div{
+            position: absolute;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgb(255,255,255);
+            width: 750px;
+            height: 500px;
+            visibility: hidden;
+        }
+        #menu-div.show{
+            visibility: visible;
+        }
+        .menu-item{
+            margin-left: 550px;
+            width: 200px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
+            color: black;
+        }
+        .menu-item:hover{
+            background-color: rgb(0,150,255);
+            color: white;
+        }
+        #menu-os-simu{
+            position: absolute;
+            top: 50%;
+            left: 300px;
+            transform: translate(-50%,-50%);
+            font-size: 60px;
+            color: black;
+            white-space: nowrap;
+        }
+        #contextmenu{
+            position: fixed;
+            width: 150px;
+            height: 250px;
+            background-color: rgb(255,255,255);
+            visibility: hidden;
+            border: 1px solid black;
+        }
+        .contextmenu-item{
+            text-align: center;
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+        }
+        .contextmenu-item:hover{
+            background-color: rgb(0,100,255);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="background-text">OS SIMU V4</h1>
+    <div id="taskbar">
+        <div id="menu">菜单</div>
+    </div>
+    <div id="menu-div">
+        <div class="menu-item" onclick="window.open('https://t-pagecode.github.io')">T-PageCode主页</div>
+        <div class="menu-item" onclick="window.open('https://t-pagecode.github.io/T-CodeSystem')">T-CodeSystem</div>
+        <div class="menu-item" onclick="window.open('https://codeberg.org/T-PageCode')">Codeberg</div>
+        <div class="menu-item" onclick="window.open('https://gitcode.com/T-PageCode')">GitCode</div>
+        <div class="menu-item" onclick="window.open('https://github.com/T-PageCode')">GitHub</div>
+        <div class="menu-item" onclick="window.open('https://gitea.com/T-PageCode')">Gitea</div>
+        <div class="menu-item" onclick="window.open('https://gitee.com/T-PageCode')">Gitee</div>
+        <div class="menu-item" onclick="window.location.href='./index.html'">关闭系统</div>
+        <div class="menu-item" onclick="window.location.href='./v3.html'">切换到V3版本</div>
+        <div class="menu-item" onclick="window.location.href='./v5.html'">切换到V5版本</div>
+        <h1 id="menu-os-simu">OS SIMU V4</h1>
+    </div>
+    <div id="contextmenu">
+        <div class="contextmenu-item" onclick="window.location.reload()">刷新</div>
+        <div class="contextmenu-item" onclick="window.open('https://github.com/T-PageCode')">GitHub</div>
+    </div>
+    <script>
+        const contextmenu = document.getElementById("contextmenu");
+        document.addEventListener("contextmenu",(e) => {
+            e.preventDefault();
+            let x = e.clientX + "px";
+            let y = e.clientY + "px";
+            contextmenu.style.visibility = "visible";
+            contextmenu.style.left = x;
+            contextmenu.style.top = y;
+        })
+        document.addEventListener("mousedown",(e) => {
+            if (e.target.closest("#contextmenu")) {
+                return;
+            }
+            contextmenu.style.visibility = "hidden";
+        })
+        const menu = document.getElementById("menu");
+        const menuDiv = document.getElementById("menu-div");
+        menu.onclick = () => {
+            menuDiv.classList.toggle("show");
+        }
+        document.body.onclick = (e) => {
+            if (e.target.closest("#menu") || e.target.closest("#menu-div")) {
+                return;
+            }
+            menuDiv.classList.remove("show");
+        }
+    </script>
+</body>
+</html>

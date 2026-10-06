@@ -1,0 +1,46 @@
+body{
+    background-color: white;
+}
+*{
+    font-family: system-ui;
+    margin: 0;
+    padding: 0;
+    font-weight: 200;
+    user-select: none;
+}
+#title-text{
+    position: absolute;
+    top: calc(50% - 50px);
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 50px;
+}
+#old-new{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 20px;
+}
+#go{
+    position: absolute;
+    top: calc(50% + 50px);
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 40px;
+    width: 180px;
+    border-radius: 15px;
+    border: none;
+    background-color: rgb(200,0,255);
+    color: white;
+    font-size: 17px;
+    transition: background-color 0.5s ease,
+    transform 0.3s ease;
+}
+#go:hover{
+    background-color: rgb(150,0,255);
+}
+#go:active{
+    background-color: rgb(100,0,255);
+    transform: translate(-50%,-50%) scale(0.8);
+}
