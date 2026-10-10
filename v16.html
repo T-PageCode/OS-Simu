@@ -2,10 +2,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>OS Simu v15</title>
+    <title>OS Simu v16</title>
     <style>
         body,html{
-            background-color: rgb(0,220,0);
+            background-color: rgb(0,200,100);
             width: 100%;
             height: 100%;
         }
@@ -55,11 +55,11 @@
             z-index: 1;
         }
         #menu:hover{
-            background-color: rgb(0,150,0);
+            background-color: rgb(0,150,50);
             color: white;
         }
         #menu:active{
-            border-color: rgb(0,100,0);
+            border-color: rgb(0,0,0);
             transform: translate(-50%,-50%) perspective(800px) rotateX(-20deg) rotateY(-20deg) scale(0.8);
         }
         #menu-div{
@@ -93,11 +93,15 @@
             color: black;
             border-radius: 15px;
             transition: background-color 0.3s ease,
-            color 0.3s ease;
+            color 0.3s ease,
+            transform 0.3s ease;
         }
         .menu-item:hover{
-            background-color: rgb(0,150,0);
+            background-color: rgb(0,150,50);
             color: white;
+        }
+        .menu-item:active{
+            transform: scale(0.8);
         }
         #menu-os-simu{
             position: absolute;
@@ -130,12 +134,16 @@
             border-radius: 15px;
             font-size: 17px;
             transition: background-color 0.3s ease,
-            color 0.3s ease;
+            color 0.3s ease,
+            transform 0.3s ease;
             color: black;
         }
         .contextmenu-item:hover{
-            background-color: rgb(0,100,0);
+            background-color: rgb(0,100,50);
             color: white;
+        }
+        .contextmenu-item:active{
+            transform: scale(0.8);
         }
         #time{
             position: absolute;
@@ -172,7 +180,7 @@
     </style>
 </head>
 <body>
-    <h1 id="background-text">OS Simu V15</h1>
+    <h1 id="background-text">OS Simu V16</h1>
     <div id="taskbar">
         <div id="menu">菜单</div>
         <p id="time"></p>
@@ -186,12 +194,12 @@
         <div class="menu-item" onclick="window.open('https://gitea.com/T-PageCode')">Gitea</div>
         <div class="menu-item" onclick="window.open('https://gitee.com/T-PageCode')">Gitee</div>
         <div class="menu-item" onclick="window.location.href='./index.html'">关闭系统</div>
-        <div class="menu-item" onclick="window.location.href='./v14.html'">切换到V14版本</div>
-        <div class="menu-item" onclick="window.location.href='./v16.html'">切换到V16版本</div>
+        <div class="menu-item" onclick="window.open('https://t-pagecode.github.io/Downloads')">下载中心</div>
+        <div class="menu-item" onclick="window.location.href='./v15.html'">切换到V15版本</div>
         <h1 id="menu-hour"></h1>
         <h1 id="menu-minute"></h1>
         <p id="menu-date"></p>
-        <p id="menu-os-simu">OS Simu V15</p>
+        <p id="menu-os-simu">OS Simu V16</p>
     </div>
     <div id="contextmenu">
         <div class="contextmenu-item" onclick="window.location.reload()">刷新</div>
@@ -201,8 +209,7 @@
         <div class="contextmenu-item" onclick="window.open('https://github.com/T-PageCode')">GitHub</div>
         <div class="contextmenu-item" onclick="window.open('https://gitcode.com/T-PageCode')">GitCode</div>
         <div class="contextmenu-item" onclick="window.open('https://codeberg.org/T-PageCode')">Codeberg</div>
-        <div class="contextmenu-item" onclick="window.location.href='./v14.html'">切换到V14版本</div>
-        <div class="contextmenu-item" onclick="window.location.href='./v16.html'">切换到V16版本</div>
+        <div class="contextmenu-item" onclick="window.location.href='./v15.html'">切换到V15版本</div>
     </div>
     <script>
         const contextmenu = document.getElementById("contextmenu");
